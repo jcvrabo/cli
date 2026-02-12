@@ -46,12 +46,12 @@ jobs:
           sudo apt install -y build-essential unzip wamerican
 
       - name: Checkout cli
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: cli
 
       - name: Checkout bosh-bootloader
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: cloudfoundry/bosh-bootloader
           path: bosh-bootloader
@@ -71,7 +71,7 @@ jobs:
       - name: delete bosh
         run: |
           cd ${ENV_NAME}/bbl-state
-          eval "$(bbl print-env)"
+          eval "$(bbl print-env --shell-type posix)"
           
           echo "Deleting env ${ENV_NAME}"
           echo ${BBL_GCP_SERVICE_ACCOUNT_KEY} > key.json
