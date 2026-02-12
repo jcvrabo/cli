@@ -30,7 +30,7 @@ jobs:
       run: echo "claw-url=https://packages.cloudfoundry.org" >> "${GITHUB_OUTPUT}"
 
     - name: Checkout cli
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: Parse semver
       id: parse-semver
@@ -71,14 +71,14 @@ jobs:
     steps:
 
     - name: Checkout cli-ci
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
       with:
         repository: cloudfoundry/cli-ci.git
         ref: main
         path: cli-ci
 
     - name: Checkout homebrew-tap
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
       with:
         repository: cloudfoundry/homebrew-tap
         ref: master
@@ -246,7 +246,7 @@ jobs:
         echo "VERSION_BUILD: ${VERSION_BUILD}"
 
     - name: Checkout
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - uses: ruby/setup-ruby@v1
       with:
@@ -385,7 +385,7 @@ jobs:
     #     ls -R
     #
     # - name: Backup current Linux RPM repodata
-    #   uses: actions/upload-artifact@v5
+    #   uses: actions/upload-artifact@v6
     #   with:
     #     if-no-files-found: error
     #     name: cf-cli-linux-rpm-repodata-backup
@@ -403,7 +403,7 @@ jobs:
         && pip3 install awscli
 
     - name: Setup aws to upload installers to CLAW S3 bucket
-      uses: aws-actions/configure-aws-credentials@v5
+      uses: aws-actions/configure-aws-credentials@v6
       with:
         aws-access-key-id:     ${{ vars.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -428,7 +428,7 @@ jobs:
       run: ls -R
 
     - name: Store Linux RPM repodata
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         if-no-files-found: error
         name: cf-cli-linux-rpm-repodata
@@ -485,7 +485,7 @@ jobs:
           echo "VERSION_BUILD: ${VERSION_BUILD}"
 
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Calculate Checksums
         run: |
@@ -586,7 +586,7 @@ jobs:
         echo "Environment: ${ENVIRONMENT}"
     
     - name: Checkout
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
       with:
         repository: cloudfoundry/cli
         ref: ${{ github.ref_name }}
